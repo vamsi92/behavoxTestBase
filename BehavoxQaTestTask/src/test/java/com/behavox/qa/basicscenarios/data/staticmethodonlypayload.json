@@ -1,0 +1,3 @@
+{
+  "code":"class Example {static String test(){return 'test';}}"
+}

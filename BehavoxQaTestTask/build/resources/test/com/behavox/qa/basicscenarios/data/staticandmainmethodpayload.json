@@ -1,0 +1,3 @@
+{
+  "code":"class Example {static void main(String[] args) {Example.test();}static String test(){return 'test';}}"
+}

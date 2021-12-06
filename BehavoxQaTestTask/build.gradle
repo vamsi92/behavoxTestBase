@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets{
+    test{
+        resources {
+            srcDir file('src/test/java')
+            exclude '**/*.java'
+        }
+        compileClasspath += project.sourceSets.test.compileClasspath
+        runtimeClasspath += project.sourceSets.test.runtimeClasspath
+    }
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.2'
+    // https://mvnrepository.com/artifact/com.intuit.karate/karate-junit5
+    implementation group: 'com.intuit.karate', name: 'karate-junit5', version: '1.1.0'
+// https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting
+    implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.6.1'
+
+
+
+}
+task karateTest(type:Test,description: 'Task to run api tests'){
+    useJUnitPlatform()
+    testClassesDirs = project.sourceSets.test.output.classesDirs
+    classpath =project.sourceSets.test.runtimeClasspath
+    StringBuilder karateOptions=new StringBuilder()
+    if(project.findProject('tags'))
+        karateOptions.append('--tags').append(project.findProperty('tags')).append(" ")
+    if(project.findProperty('features')) {
+        String features = project.findProperty('features').spllit(' ').collect { "classpath:$it" }.join(' ')
+        karateOptions.append(features)
+    }
+}
+

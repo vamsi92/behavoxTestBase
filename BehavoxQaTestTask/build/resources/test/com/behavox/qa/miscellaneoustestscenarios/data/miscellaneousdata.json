@@ -1,0 +1,9 @@
+[{"code":"def lst = [11, 12, 13, 14]; lst.add(15); return lst;"},
+ {"code":"def lst = [11, 12, 13, 14]; lst.remove(11); return lst;"},
+ {"code":"def arr = new int[3];arr[5] = 5; return arr;"},
+ {"code":"try {def arr = new int[3];arr[5] = 5; return arr;} catch(Exception ex) {return 'exception occured';}"},
+ {"code":"def clos = {println 'Hello World'; return 'closure called'}; clos.call();"},
+ {"code":"def str1 = 'Hello'; def clos = {param -> return str1+param}; clos.call('World');"},
+ {"code":"def mp = ['TopicName' : 'Maps', 'TopicDescription' : 'Methods in Maps']; mp.put('TopicID','1'); return mp;"},
+ {"code":"def mp = ['TopicName' : 'Maps', 'TopicDescription' : 'Methods in Maps']; return mp.values();"}
+]
